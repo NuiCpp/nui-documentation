@@ -1,5 +1,7 @@
 # Website
 
+Some graphics are preliminary until Nui has a logo.
+
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
 ### Installation
