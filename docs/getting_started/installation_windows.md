@@ -26,8 +26,8 @@ Using nvm is the most practical way to install node and npm https://github.com/c
 If you have already have node installed, uninstall it first before using nvm.
 
 :::
-Open cmd and install the latest or LTS version with `nvm install latest`
-Activate the version using `nvm use VERSION_HERE` for example `nvm use latest`.
+- Open cmd and install the latest or LTS version with `nvm install latest`
+- Activate the version using `nvm use VERSION_HERE` for example `nvm use latest`.
 
 ### Install Visual Studio Packages
 
