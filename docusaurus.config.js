@@ -73,7 +73,7 @@ const config = {
                         position: 'left',
                         label: 'Documentation',
                     },
-                    { to: '/updates', label: 'Updates', position: 'left' },
+                    { to: 'blog', label: 'Updates', position: 'left' },
                     {
                         href: 'https://github.com/NuiCpp/Nui',
                         label: 'GitHub',
