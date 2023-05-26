@@ -16,6 +16,11 @@ const sidebars = {
     // But you can create a sidebar manually
     documentationSidebar: [
         {
+            type: 'doc',
+            id: 'what_is_nui',
+            label: 'What is Nui?',
+        },
+        {
             type: 'category',
             label: 'Getting Started',
             collapsible: true,
@@ -52,7 +57,68 @@ const sidebars = {
                 {
                     type: 'doc',
                     id: 'tutorials/ui_syntax',
-                    label: 'Ui Syntax',
+                    label: 'UI Syntax',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/attributes',
+                    label: 'Attributes',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/update_events',
+                    label: 'Update Events',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/components',
+                    label: 'Components',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/range_rendering',
+                    label: 'Range Rendering',
+                }
+            ]
+        },
+        {
+            type: 'category',
+            label: 'Builtin Components',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {
+                    type: 'doc',
+                    id: 'builtin_components/table',
+                    label: 'Table',
+                },
+                {
+                    type: 'doc',
+                    id: 'builtin_components/dialog',
+                    label: 'Dialog',
+                }
+            ]
+        },
+        {
+            type: 'category',
+            label: 'Reference',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {
+                    type: 'doc',
+                    id: 'reference/val',
+                    label: 'Val',
+                },
+                {
+                    type: 'doc',
+                    id: 'reference/fragment',
+                    label: 'Fragments',
+                },
+                {
+                    type: 'doc',
+                    id: 'reference/nil',
+                    label: 'Nil',
                 },
             ]
         }

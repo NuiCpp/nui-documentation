@@ -231,26 +231,28 @@ The launch.json will now open with a preset.
 Change/Adapt the contents to the following:
 
 ```json
-// Use IntelliSense to learn about possible attributes.
-// Hover to view descriptions of existing attributes.
-// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-"version": "0.2.0",
-"configurations": [
-    {
-        "name": "Debug",
-        "type": "gdb",
-        "request": "launch",
-        // If you change the name of your project/application, you need to change the executeable name here too:
-        "target": "${workspaceRoot}/build/clang_debug/bin/nui-template.exe",
-        "cwd": "${workspaceRoot}",
-        // Adapt the path to your point to your msys2 installation.
-        // Use the gdb from the clang64 environment installed by mingw-w64-clang-x86_64-gdb
-        // NOT the globally available package gdb, because that one is far older.
-        "gdbpath": "C:/msys64/clang64/bin/gdb.exe",
-        "valuesFormatting": "parseText",
-        "preLaunchTask": "build_debug"
-    }
-]
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "gdb",
+            "request": "launch",
+            // If you change the name of your project/application, you need to change the executeable name here too:
+            "target": "${workspaceRoot}/build/clang_debug/bin/nui-template.exe",
+            "cwd": "${workspaceRoot}",
+            // Adapt the path to your point to your msys2 installation.
+            // Use the gdb from the clang64 environment installed by mingw-w64-clang-x86_64-gdb
+            // NOT the globally available package gdb, because that one is far older.
+            "gdbpath": "C:/msys64/clang64/bin/gdb.exe",
+            "valuesFormatting": "parseText",
+            "preLaunchTask": "build_debug"
+        }
+    ]
+}
 ```
 The launch configuration already defines a preLaunchTask, which does not yet exist.
 Create a `tasks.json` in the .vscode directory of your project. This file will be next to the `launch.json`.

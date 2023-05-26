@@ -5,14 +5,20 @@ It combines a HTML like appearance with inline C++ code.
 
 ```cpp
 // within frontend main:
-const auto page = div{
-    id = "divId"
-}(
+const auto page = 
+div{id = "divId"}
+(
     button{}()
-)
+);
 
 thread_local Nui::Dom::Dom dom;
 dom.setBody(page);
+```
+The HTML equivalent would look like this:
+```html
+<div id="divId">
+    <button></button>
+</div>
 ```
 
 A Ui Element breaks down to:
@@ -26,4 +32,4 @@ div{
 )
 ```
 This expression DOES NOT represent a div directly, but it creates a factory that is able to make divs.
-This allows to compose these factories and remake the same elements multiple times from this factory.
+These factories can then be composed and made into components.
