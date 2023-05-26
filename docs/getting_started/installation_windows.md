@@ -23,33 +23,31 @@ Make sure that the python executeable is in PATH
 Using nvm is the most practical way to install node and npm https://github.com/coreybutler/nvm-windows/releases.
 :::caution
 
-If you have already have node installed, uninstall it first before using nvm.
+If you already have node installed, uninstall it first before using nvm.
 
 :::
-- Open cmd and install the latest or LTS version with `nvm install latest`
+- Open cmd (WinKey + R and type cmd in the menu) and install the latest or LTS version with `nvm install latest`
 - Activate the version using `nvm use VERSION_HERE` for example `nvm use latest`.
 
 ### Install Visual Studio Packages
 
-Make sure that you have installed the following components for Visual Studio using the official Visual Studio Installer:
+Make sure that you have installed the following components for Visual Studio 2022 using the official Visual Studio Installer:
 - vcpkg package manager
 - C++ CMake tools for Windows
 - C++ Clang tools for Windows (<- not automatically included in the Desktop development with C++ Workload setting)
-- git for Windows (If you dont have it installed already)
+- git for Windows, or install it via official downloads: https://gitforwindows.org/
 
 Nui only supports clang and requires clang for WASM compilation.
 MSVC and gcc are not supported.
 
 ### Using the Template
 
-1. Create a new repository based on the nui template, or clone the template source directly, available here: https://github.com/NuiCpp/nui-template
-This will provide you with a minimal baseline project to use nui with.
-
-2. Open the manually cloned directory in Visual Studio or clone using Visual Studio.
+1.  Create a new repository based on the nui template, or clone the template source directly, available here: https://github.com/NuiCpp/nui-template.
+This will provide you with a minimal baseline project to use nui with. Open the manually cloned directory in Visual Studio or clone using Visual Studio.
 
 ![img alt](/img/visual_studio/clone.jpg)
 
-3. Setup vcpkg
+1. Setup vcpkg
 
 Open a terminal from within Visual Studio:
 
@@ -59,19 +57,19 @@ Enter `vcpkg integrate install`
 
 ![img alt](/img/visual_studio/vcpkg_integrate.jpg)
 
-4. Copy the displayed path to the toolchain file and enter the CMake settings view via Project->"CMake Settings for ..."
+3. Copy the displayed path to the toolchain file and enter the CMake settings view via Project->"CMake Settings for ..."
 
 ![img alt](/img/visual_studio/cmake_settings.jpg)
 
-5. Set the copied toolchain file path
+4. Set the copied toolchain file path
 
 ![img alt](/img/visual_studio/toolchain_file.jpg)
 
-6. Also Switch to the clang_cl toolset and save. If the toolset is missing, install it using the Visual Studio Installer.
+5. Also Switch to the clang_cl toolset and save. If the toolset is missing, install it using the Visual Studio Installer.
 
 ![img alt](/img/visual_studio/toolset_clang.jpg)
 
-7. Delete the cache and reconfigure
+6. Delete the cache and reconfigure
 
 ![img alt](/img/visual_studio/reconfigure.jpg)
 
@@ -84,6 +82,7 @@ This tutorial shows you how to build using the msys2 tools.
 ### Install msys2 if you dont have it installed
 
 Follow the installation instructions here: https://www.msys2.org/
+
 Make sure to update after the initial installation using `pacman -Syu`.
 
 After installation navigate to your msys2 installation and open the clang64 environment terminal.
@@ -129,7 +128,7 @@ Install git in the msys2 terminal using `pacman -S git`
 
 (You can skip this part and go straight to [Visual Studio Code](#using-visual-studio-code) if you use this IDE)
 
-1. Navigate to a directory of your choice within the msys2 clang64 environment terminal, the default path the msys2 terminal is in, is the msys2 home directory located in your msys2 installation.
+1. Navigate to a directory of your choice within the msys2 clang64 environment terminal using `cd PATH_HERE`, the default path the msys2 terminal is in, is the msys2 home directory located in your msys2 installation.
 
 :::info
 
@@ -161,7 +160,7 @@ msys2 clang64 environment terminal.
 7. Your application is now in `build/clang_debug/bin/nui-template.exe`
 
 ### Using msys2 with the Windows Terminal
-Here is a tutorial: https://www.msys2.org/docs/terminals/
+If you want the slightly prettier Windows Terminal with msys2, there is a tutorial here: https://www.msys2.org/docs/terminals/
 
 ## Using Visual Studio Code
 
@@ -313,6 +312,43 @@ Dont forget to change the bash executeable path to point to your msys2 installat
 
 You can now build and run your application using the green arrow in the build and run tab or by pressing F5.
 
+## Using CLion
+
+Clion is very flexible and allows for both the Visual Stuido toolset to be used with vcpkg,
+Or the msys2 environment. This tutorial will show how to use it with msys2.
+The Visual Studio way is similar, but requires you to set the vcpkg toolchain file via `-DCMAKE_TOOLCHAIN_FILE=...` just like the Visual Studio tutorial shows.
+
+### Using the msys2 Environment
+
+The official information by jetlion is outdated for clang with msys2, because of the clang64 subsystem.
+This tutorial shows how to setup clang properly.
+
+Follow the [msys2 instructions](#using-msys2) up to the point where you would be building the template project.
+Within CLion:
+- Open the cloned project nui-template. If you never set up a toolchain, the following windows might pop up automatically.
+- Go to File -> Settings -> Build, Execution, Deployment -> Toolchains
+- Create a new Toolchain for MinGW
+
+![img alt](/img/clion/add_clang64.jpg)
+
+- Fill out the form like this. Make sure that you chose the path to your msys2 installation as it may vary.
+
+![img alt](/img/clion/setup_tools.jpg)
+
+- Now add a CMake profile like this:
+
+![img alt](/img/clion/cmake_profile.jpg)
+
+- You can now add a CMake run configuation
+
+![img alt](/img/clion/cmake_conf_1.jpg)
+
+- Which will automatically find all targets and make them runable
+
+![img alt](/img/clion/cmake_conf_2.jpg)
+
+- Run the nui-template target and its going to be built and executed.
+
 ## Troubleshooting
 
 ### Call to async_teardown is ambiguous
@@ -338,7 +374,7 @@ If you are using msys2, [install the correct packages](#install-msys2-if-you-don
 
 ### Other
 
-- Make sure that there is no other clang in the PATH. Visual Studio uses the first clang it finds it your PATH environment variable which can cause weird behaviour.
+- When using Visual Studio, make sure that there is no other clang in the PATH. Visual Studio uses the first clang it finds it your PATH environment variable which can cause weird behaviour.
 
 
 
