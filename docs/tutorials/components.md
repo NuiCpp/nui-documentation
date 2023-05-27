@@ -119,7 +119,7 @@ void frontendMain() {
 }
 ```
 You obviously should manage your component lifetimes correctly though, but sometimes there are valid use cases where a component
-might get destroyed and you have to able to detect it.
+might get destroyed and you have to be able to detect it.
 
 ## Final Words
 All in all, component design is entirely up to you. Nui does not enforce any way of writing them or is in any way opinionated.

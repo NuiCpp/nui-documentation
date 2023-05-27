@@ -101,6 +101,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'builtin_components/dialog',
                     label: 'Dialog',
+                },
+                {
+                    type: 'doc',
+                    id: 'builtin_components/select',
+                    label: 'Select',
                 }
             ]
         },

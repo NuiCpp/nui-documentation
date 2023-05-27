@@ -17,11 +17,12 @@ auto foo() {
         // highlight-start
         // Indicates that the following function is to be rendered for each element in people.
         // The range is rerendered optimally, when people is changed.
-        range(people),
+        people.map(
         // highlight-end
-        [](long long index, auto const& currentElement){
-            return span{}(fmt::format("{} is {} years old!", currentElement.name, currentElement.age));
-        }
+            [](long long index, auto const& currentElement){
+                return span{}(fmt::format("{} is {} years old!", currentElement.name, currentElement.age));
+            }
+        )
     )
 }
 ```
@@ -32,14 +33,16 @@ But if you want to transform the entire range or replace it entirely, than these
 This code snippet shows the two ways of modifying the range and what you should do to bypass modification optimizations:
 ```cpp
 auto foo() {
-    thread_local Nui::Observed<int> numbers = {1, 2, 3, 4, 5};
+    thread_local Nui::Observed<std::vector<int>> numbers = {1, 2, 3, 4, 5};
 
     return fragment(
         div{}(
-            range(numbers),
-            [](long long index, auto currentElement){
+            // map data to view elements:
+            numbers.map([](long long index, auto currentElement){
                 return div{}(currentElement);
-            }
+            })
+            // Additional elements at the end here or at the front are currently not supported within
+            // the same container element.
         ),
         button{
             onClick = [&numbers](){
