@@ -16,9 +16,9 @@ struct TableEntry
     int age;
 };
 
-void renderTable(Nui::Observed<std::vector<TableEntry>>& tableModel)
+auto makeTable(Nui::Observed<std::vector<TableEntry>>& tableModel)
 {
-    auto const table = Table<TableEntry>{{ // 2 braces, because Table takes a struct
+    return Table<TableEntry>{{ // 2 braces, because Table takes a struct
         // All parameters except tableModel can be omited.
         .tableModel = tableModel,
         .caption = "Table",
