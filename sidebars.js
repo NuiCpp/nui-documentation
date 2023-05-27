@@ -76,6 +76,11 @@ const sidebars = {
                 },
                 {
                     type: 'doc',
+                    id: 'tutorials/observed_rendering',
+                    label: 'Observed Rendering',
+                },
+                {
+                    type: 'doc',
                     id: 'tutorials/range_rendering',
                     label: 'Range Rendering',
                 }

@@ -40,8 +40,7 @@ The frontend main function is later called when the page is loaded. It is respon
 ```cpp
 #include <nui/core.hpp>
 #include <nui/window.hpp>
-
-#include <nui/frontend/dom/dom.hpp>
+#include <nui/frontend.hpp>
 
 extern "C" void frontendMain() {
   thread_local Nui::Dom::Dom dom;
