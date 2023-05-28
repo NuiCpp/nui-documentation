@@ -88,6 +88,16 @@ const sidebars = {
                     type: 'doc',
                     id: 'tutorials/single_page_routing',
                     label: 'Single Page Routing',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/rpc',
+                    label: 'Communication Frontend <-> Backend',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/integrating_bootstrap',
+                    label: 'Integrating Bootstrap',
                 }
             ]
         },
