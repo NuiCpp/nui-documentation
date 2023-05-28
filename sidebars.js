@@ -83,6 +83,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'tutorials/range_rendering',
                     label: 'Range Rendering',
+                },
+                {
+                    type: 'doc',
+                    id: 'tutorials/single_page_routing',
+                    label: 'Single Page Routing',
                 }
             ]
         },
