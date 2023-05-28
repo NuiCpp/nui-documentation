@@ -16,7 +16,7 @@ Nui::ElementRenderer multiPage1()
     if (urlFragment == "about")
         return span{}("About");
     else if (urlFragment == "")
-        return span{}("Main PAge");
+        return span{}("Main Page");
     else
         return span{}("Default");
 }
