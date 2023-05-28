@@ -7,6 +7,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const organizationName = "NuiCpp";
 const projectName = "nui-documentation";
 
+const url = `https://${organizationName}.github.io`;
+const baseUrl = `/${projectName}/`;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Nui',
@@ -14,10 +17,10 @@ const config = {
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
-    url: `https://${organizationName}.github.io`,
+    url: url,
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
-    baseUrl: `/${projectName}/`,
+    baseUrl: baseUrl,
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
@@ -72,6 +75,10 @@ const config = {
                         sidebarId: 'documentationSidebar',
                         position: 'left',
                         label: 'Documentation',
+                    },
+                    {
+                        href: `${url}${baseUrl}docs/doxygen`,
+                        label: 'Doxygen'
                     },
                     { to: 'blog', label: 'Updates', position: 'left' },
                     {
