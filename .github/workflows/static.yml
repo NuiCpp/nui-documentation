@@ -28,6 +28,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: awalsh128/cache-apt-pkgs-action@v1.3.0
+        with:
+          packages: doxygen graphviz
       - name: Checkout
         uses: actions/checkout@v3
       # 👇 Build steps
@@ -40,6 +43,17 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
       - name: Build
         run: yarn build
+      - name: Clone Nui
+        uses: actions/checkout@master
+          with: 
+            repository: NuiCpp/Nui
+            ref: main
+            path: nui
+      - name: Build Nui Documents
+        working-directory: nui
+        run: doxygen doxyfile
+      - name: Copy Nui Documents
+        run: cp -r nui/build/docs/html build/docs/doxygen
       # 👆 Build steps
       - name: Setup Pages
         uses: actions/configure-pages@v1
