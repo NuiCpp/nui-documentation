@@ -54,6 +54,6 @@ EMSCRIPTEN_BINDINGS(nui_example_frontend) {
 ```
 
 Note that the Dom is a thread_local static variable. For one, the variable has to survive the frontend main function, and also
-must not be used across WebWorkers or threads. All UI related functions may not be used in parallel. This restriction is forwarded by Nui from emscripten.cpp
+must not be used across WebWorkers or threads. All UI related functions may not be used in parallel. This restriction is forwarded by Nui from emscripten.
 
 The dom.setBody function replaces the document root with your own page. In this case a body element with textContent.
