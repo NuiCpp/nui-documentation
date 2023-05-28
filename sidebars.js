@@ -131,7 +131,12 @@ const sidebars = {
                     label: 'Nil',
                 },
             ]
-        }
+        },
+        {
+            type: 'doc',
+            id: 'debugging',
+            label: 'Debugging',
+        },
     ],
 };
 
