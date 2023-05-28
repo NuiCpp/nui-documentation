@@ -59,7 +59,7 @@ Some elements can invoke events, like buttons with their onClick event:
 ```cpp
 const auto ui = button{
     onClick = [](Nui::val event){
-        // The event parameter has the same content as the javascript equivalent woud.
+        // The event parameter has the same content as the javascript equivalent would.
     }
 }
 ```
