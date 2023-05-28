@@ -53,6 +53,7 @@ jobs:
         working-directory: nui
         run: doxygen doxyfile
       - name: Copy Nui Documents
+        run: mkdir -p build/docs
         run: cp -r nui/build/docs/html build/docs/doxygen
       # 👆 Build steps
       - name: Setup Pages
