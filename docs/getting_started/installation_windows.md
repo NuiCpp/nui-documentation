@@ -353,15 +353,6 @@ Within CLion:
 
 ## Troubleshooting
 
-### Call to async_teardown is ambiguous
-There currently is a bug in boost beast that causes this error to appear in builds.
-https://github.com/boostorg/beast/pull/2683
-
-Until this issue is fixed, a manual patching of boost::beasts affected header is necessary.
-The `template<class AsyncStream, BOOST_BEAST_ASYNC_TPARAM1 TeardownHandler>`
-lines in `ssl_stream.hpp` need to be changed to
-`template<class AsyncStream, typename TeardownHandler>`
-
 ### Error: could not find git for clone of nui in FetchContent
 
 CMake cannot find git in your PATH environment. 
