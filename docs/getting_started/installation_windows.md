@@ -177,7 +177,7 @@ To access the user settings.json press `Ctrl+Shift+P` and enter `settings.json` 
 ```json
 {
     "terminal.integrated.profiles.windows": {
-        "msys2 CLANG64": {
+        "MSYS2 CLANG64": {
             "path": "cmd.exe",
             "args": [
                 "/c",
@@ -187,7 +187,7 @@ To access the user settings.json press `Ctrl+Shift+P` and enter `settings.json` 
         }
     },
     // If you want it as your default terminal:
-    // "terminal.integrated.defaultProfile.windows": "msys2 CLANG64"
+    // "terminal.integrated.defaultProfile.windows": "MSYS2 CLANG64"
 }
 ```
 

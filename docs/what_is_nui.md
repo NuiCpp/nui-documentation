@@ -33,7 +33,7 @@ Nui actually compares itself with a completely different Tech Stack, because its
 Nui is essentially this, but in C++ with C++ integrations.
 
 ### Tauri
-Tauri is also similar in concept, but for Rust. And Tauri does not do any UI work directly. But it pairs with well Svelte.
+Tauri is also similar in concept, but for Rust. And Tauri does not do any UI work directly. But it pairs well with Svelte.
 
 ## What Does The Future Hold for Nui?
 
