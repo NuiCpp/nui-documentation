@@ -145,6 +145,11 @@ const sidebars = {
                     id: 'reference/nil',
                     label: 'Nil',
                 },
+                {
+                    type: 'doc',
+                    id: 'reference/stabilize',
+                    label: 'Stabilize',
+                },
             ]
         },
         {
