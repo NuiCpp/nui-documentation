@@ -10,7 +10,7 @@ Example:
 struct Parameters
 {
     Nui::Observed<bool> toggle = true;
-    StableElements stable;
+    Nui::StableElement stable;
 }
 
 auto foo(Parameters& params) 
