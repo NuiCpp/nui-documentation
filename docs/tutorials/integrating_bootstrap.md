@@ -40,14 +40,13 @@ static/styles/page.scss:
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 ```
 
-## Defining Custom Attributes
+## Defining Custom Attributes For Bootstrap
 
 You can define non standard attributes like this:
 ```cpp
 #include <nui/frontend/attributes/impl/attribute.hpp>
 
-// At global scope / in a namespace:
-MAKE_HTML_VALUE_ATTRIBUTE_RENAME(dataBsTarget, "data-bs-target")
+constexpr auto dataBsTarget = Nui::Attributes::AttributeFactory("data-bs-target");
 
 // =>
 div{

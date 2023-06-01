@@ -91,6 +91,27 @@ const auto ui = span{
 }();
 ```
 
+## Custom Attributes
+
+To define an attribute that is non standard, you can do the following:
+
+```html
+<a class="dropdown-toggle" data-bs-toggle="dropdown">
+```
+```cpp
+// Define custom attribute:
+constexpr auto dataBsToggle = Nui::Attributes::AttributeFactory("data-bs-toggle");
+
+auto foo()
+{
+    return a{
+        class_ = "dropdown-toggle",
+        // Can be used here now:
+        dataBsToggle = "dropdown"
+    }();
+}
+```
+
 ## Styles
 
 In general, it is recommended to use seperate CSS files to style elements, because inline styles do have an impact on the WASM size if used frequently.
