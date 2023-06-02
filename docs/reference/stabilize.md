@@ -44,6 +44,7 @@ It will not be deleted and rerendered when toggle changes.
 It will be reinserted when toggle switches from false back to true.
 
 The `StableElement` can be reset with `StableElement::reset()`. It will then rerender on the next render.
+And it can be deleted directly with `StableElement::destroy()`.
 
 ## Caveats
 
