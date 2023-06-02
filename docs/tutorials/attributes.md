@@ -80,11 +80,16 @@ const auto ui = span{
     // Observe changes on the passed Nui::Observed<T> and generate a class from that
     class_ = observe(spanClasses, spanSubclass).generate([&spanClasses, &spanSubclass](){
         // use .value to access the underlying wrapped value of a Nui::Observed:
-        auto classes = std::accumulate(std::begin(spanClasses.value()), std::end(spanClasses.value()), std::string{}, [](auto accum, auto const& elem){
-            accum = std::move(accum) + " " + elem;
-        });
+        auto classes = std::accumulate(
+            std::begin(spanClasses.value()), 
+            std::end(spanClasses.value()), 
+            std::string{}, 
+            [](auto accum, auto const& elem){
+                accum = std::move(accum) + " " + elem;
+            }
+        );
         if (!accum.empty())
-            accum.pop_front();
+            accum.erase(accum.begin());
         accum += " spanSubclass" + std::to_string(spanSubclass.value());
         return accum;
     })
