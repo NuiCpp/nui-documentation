@@ -105,6 +105,7 @@ pacman -S \
 	mingw-w64-clang-x86_64-crypto++ \
 	mingw-w64-clang-x86_64-openssl \
 	mingw-w64-clang-x86_64-python \
+    mingw-w64-clang-x86_64-binaryen \
 	mingw-w64-clang-x86_64-gdb
 ```
 
