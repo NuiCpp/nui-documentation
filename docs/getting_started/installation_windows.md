@@ -95,7 +95,7 @@ This terminal should open:
 
 Install the follwing packages with pacman:
 ```bash
-pacman -S \ 
+pacman -S \
 	unzip \
 	mingw-w64-clang-x86_64-cmake \
 	mingw-w64-clang-x86_64-ninja \
