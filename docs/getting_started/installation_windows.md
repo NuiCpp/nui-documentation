@@ -8,6 +8,7 @@ On Windows you have several options to work with Nui:
 - [Visual Studio](#using-visual-studio-2022) users can use Visual Studio with CMake and Clang.
 - [msys2](#using-msys2) can be used together with the IDE of your choice, like
   - [Visual Studio Code](#using-visual-studio-code)
+  - [CLion](#using-clion)
 
 ## Using Visual Studio 2022
 
@@ -321,7 +322,7 @@ Clion is very flexible and allows for both the Visual Stuido toolset to be used 
 Or the msys2 environment. This tutorial will show how to use it with msys2.
 The Visual Studio way is similar, but requires you to set the vcpkg toolchain file via `-DCMAKE_TOOLCHAIN_FILE=...` just like the Visual Studio tutorial shows.
 
-### Using the msys2 Environment
+### With the msys2 Environment
 
 The official information by jetlion is outdated for clang with msys2, because of the clang64 subsystem.
 This tutorial shows how to setup clang properly.
