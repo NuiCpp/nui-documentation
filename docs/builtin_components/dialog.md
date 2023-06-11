@@ -1,6 +1,8 @@
 # Dialog
 
 The dialog component provides a simple dialog for simple use cases.
+[Doxygen for the Dialog Controller](https://nuicpp.github.io/nui-documentation/docs/doxygen/classNui_1_1Components_1_1DialogController.html)
+
 The dialog can be used like this:
 
 ```cpp

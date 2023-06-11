@@ -49,6 +49,6 @@ auto makeTable(Nui::Observed<std::vector<TableEntry>>& tableModel)
         .headerAttributes = {id = "header"},
         .bodyAttributes = {id = "body"},
         .footerAttributes = {id = "footer"},
-        }}();
+    }}();
 }
 ```
