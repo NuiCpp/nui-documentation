@@ -91,6 +91,11 @@ const sidebars = {
                 },
                 {
                     type: 'doc',
+                    id: 'tutorials/svg',
+                    label: 'Inline SVG',
+                },
+                {
+                    type: 'doc',
                     id: 'tutorials/rpc',
                     label: 'Communication Frontend <-> Backend',
                 },
