@@ -21,13 +21,11 @@ static/index.html:
 
     <!-- Import like this to achieve inlining -->
     <style>
-        @import "./styles/page.scss";
+        @import "./styles/main.scss";
     </style>
 
     <!-- Import like this to achieve inlining -->
     <script type="module" defer>
-        // HERE
-        import * as bootstrap from "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
         import "../bin/index.js";
     </script>
 </head>
@@ -35,8 +33,10 @@ static/index.html:
 </body>
 ```
 
-static/styles/page.scss:
+static/styles/main.scss:
 ```scss
+/* bootstrap variables here*/
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 ```
 
