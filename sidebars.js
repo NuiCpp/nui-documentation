@@ -155,6 +155,11 @@ const sidebars = {
                     id: 'reference/stabilize',
                     label: 'Stabilize',
                 },
+                {
+                    type: 'doc',
+                    id: 'reference/make_resizeable',
+                    label: 'Make Resizeable',
+                }
             ]
         },
         {
