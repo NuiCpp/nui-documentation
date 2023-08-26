@@ -24,7 +24,7 @@ The main function looks like this and is fairly straightforward:
 int main() {
   using namespace Nui;
 
-  Window window{"Window Title", true /* may open debug window */};
+  Window window{{.title = "Nui", .debug = true /* may open dev tools */}};
   window.setSize(480, 320, WebViewHint::WEBVIEW_HINT_NONE);
 
   // Loads the index:
