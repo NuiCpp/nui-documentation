@@ -14,11 +14,14 @@ Nui::ElementRenderer func()
     using Nui::Elements::div;
 
     return div{
+        id = "Outer",
         reference.onMaterialize([](Nui::val const& element){
             // Right or Bottom edge possible.
             Nui::makeResizeable(element, ResizeableEdge::Right);
         })
-    }()
+    }(
+        div{id = "Inner"}()
+    )
 }
 ```
 
@@ -32,4 +35,20 @@ Requires 'nui/make_resizeable' to be imported somewhere in your javascript/types
 import 'nui/make_resizeable';
 
 // your code...
+```
+
+Now add some styling:
+```css
+/* Flip width and height when using the bottom edge */
+#Outer {
+  cursor: col-resize;
+  background-color: $border-color;
+  min-width: 5px;
+}
+
+#Inner {
+  cursor: default;
+  height: 100%;
+  width: calc(100% - 5px);
+}
 ```
