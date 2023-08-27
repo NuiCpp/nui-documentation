@@ -6,6 +6,7 @@
   - clang
   - cmake
   - ninja
+  - make
   - git
   - python3
   - nodejs
@@ -79,8 +80,12 @@ Fill the `tasks.json` with the following content:
                 "CMAKE_BUILD_TYPE=Debug",
                 "-D",
                 "CMAKE_COLOR_DIAGNOSTICS=ON",
+                "-D",
+                "CMAKE_C_COMPILER=clang",
+                "-D",
+                "CMAKE_CXX_COMPILER=clang++",
                 "-G",
-                "\"Ninja\"",
+                "\"Unix Makefiles\"",
                 "-B",
                 "build/clang_debug",
                 "-S",
