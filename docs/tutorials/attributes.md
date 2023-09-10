@@ -168,10 +168,34 @@ Nui::val mySpan;
 const auto ui = span{
     // highlight-start
     reference = mySpan,
-    // or alternatively:
-    // reference = [&mySpan](auto&& weakElement){ mySpan = weakElement.lock()->val(); }
+    // highlight-end
+};
+// or alternatively:
+const auto ui2 = span{
+    // highlight-start
+    reference = [&mySpan](auto&& weakElement){ mySpan = weakElement.lock()->val(); }
+    // highlight-end
+};
+// and finally:
+const auto ui3 = span{
+    // highlight-start
+    reference.onMaterialize([&mySpan](Nui::val val){mySpan = val})
     // highlight-end
 };
 ```
 The passed reference is filled when the element is rendered.
 You can also pass a function if you want to perform something on render.
+
+## Optional Attributes
+Attributes can be optional (std::optional in fact).
+```cpp
+using Nui::Elements::input;
+using Nui::Attributes::value;
+
+std::optional<std::string> maybeAString = std::nullopt;
+
+const auto ui = input{
+    // will not be set at all if maybeAString is nullopt:
+    value = maybeAString
+};
+```

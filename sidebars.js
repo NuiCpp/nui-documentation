@@ -45,6 +45,19 @@ const sidebars = {
         },
         {
             type: 'category',
+            label: 'Bundling',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {
+                    type: 'doc',
+                    id: 'bundling/general',
+                    label: 'General Information',
+                }
+            ]
+        },
+        {
+            type: 'category',
             label: 'Tutorials',
             collapsible: true,
             collapsed: true,
@@ -98,11 +111,6 @@ const sidebars = {
                     type: 'doc',
                     id: 'tutorials/rpc',
                     label: 'Communication Frontend <-> Backend',
-                },
-                {
-                    type: 'doc',
-                    id: 'tutorials/integrating_bootstrap',
-                    label: 'Integrating Bootstrap',
                 }
             ]
         },
@@ -126,6 +134,19 @@ const sidebars = {
                     type: 'doc',
                     id: 'builtin_components/select',
                     label: 'Select',
+                }
+            ]
+        },
+        {
+            type: 'category',
+            label: 'Third Party Libraries',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {
+                    type: 'doc',
+                    id: 'third_party/bootstrap',
+                    label: 'Bootstrap',
                 }
             ]
         },
@@ -159,6 +180,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'reference/make_resizeable',
                     label: 'Make Resizeable',
+                },
+                {
+                    type: 'doc',
+                    id: 'reference/text',
+                    label: 'Plain Text Nodes',
                 }
             ]
         },
