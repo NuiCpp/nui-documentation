@@ -116,6 +116,12 @@ void foo()
         // ...
     });
 
+    // Useful RAII unregister (also available in backend):
+    {
+        auto unregisterWhenThisFallsOutOfScope = 
+            Nui::RpcClient::autoRegisterFunction("asdf", [](){});
+    } // asdf no longer exists here.
+
     // Removing callable:
     Nui::RpcClient::unregisterFunction("someCallable");
 }
