@@ -12,8 +12,95 @@
   - nodejs
   - openssl library
   - crypto++ library
-  - boost 
+  - boost
   - libcurl
+
+<details><summary>Ubuntu 22.04</summary>
+<p>
+
+Packages:
+```sh
+sudo apt install \
+libwebkit2gtk-4.0-dev \
+libcurl4-openssl-dev \
+libcrypto++-dev \
+ninja-build \
+make \
+cmake \
+git \
+libstdc++-11-dev \
+python3 \
+libgtk-3-dev
+```
+
+Clang:
+You can either install 'clang' as a package, or get a new clang from official llvm apt repos:
+https://apt.llvm.org/
+```sh
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+# version 16 or other:
+sudo ./llvm.sh 16
+```
+
+Boost:
+Ubuntus Boost package is ancient, you will have to pull and build it manually: https://www.boost.org/
+For example:
+```sh
+mkdir boost && cd boost
+wget -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.gz
+tar -xzf boost.tar.gz --strip-components=1
+
+# Or a different prefix:
+./bootstrap.sh --prefix=/usr/local
+sudo ./b2 --prefix=/usr/local install
+```
+
+Node:
+https://github.com/nvm-sh/nvm
+```sh
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+nvm install node
+```
+
+</p>
+</details>
+
+<details><summary>Arch Linux</summary>
+<p>
+
+Packages:
+```sh
+sudo pacman -S \
+webkit2gtk \
+gtk3 \
+clang \
+cmake \
+ninja \
+make \
+git \
+python \
+openssl \
+crypto++ \
+boost \
+curl
+```
+
+Node:
+Either via package manager:
+```sh
+sudo pacman -S nodejs
+```
+
+Or via version manager:
+https://github.com/nvm-sh/nvm
+```sh
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+nvm install node
+```
+
+</p>
+</details>
 
 ## Using the Template
 
