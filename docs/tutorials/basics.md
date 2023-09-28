@@ -11,7 +11,7 @@ It is possible to only produce a frontend for web applications but that is not t
 
 The template already provides an example structure for your project, as well as the minimal CMake needed to get going.
 
-### Backend 
+### Backend
 The backend directory contains the backend that constructs the browser window.
 The main function looks like this and is fairly straightforward:
 ```cpp
@@ -42,9 +42,13 @@ The frontend main function is later called when the page is loaded. It is respon
 #include <nui/window.hpp>
 #include <nui/frontend.hpp>
 
+#include <memory>
+
+static std::unique_ptr<Nui::Dom::Dom> dom{};
+
 extern "C" void frontendMain() {
-  thread_local Nui::Dom::Dom dom;
-  dom.setBody(body{}("Hello World"));
+  dom = std::make_unique<Nui::Dom::Dom>();
+  dom->setBody(body{}("Hello World!"));
 }
 
 EMSCRIPTEN_BINDINGS(nui_example_frontend) {
@@ -53,7 +57,6 @@ EMSCRIPTEN_BINDINGS(nui_example_frontend) {
 #include <nui/frontend/bindings.hpp>
 ```
 
-Note that the Dom is a thread_local static variable. For one, the variable has to survive the frontend main function, and also
-must not be used across WebWorkers or threads. All UI related functions may not be used in parallel. This restriction is forwarded by Nui from emscripten.
+Note that the Dom is a global static variable. The variable has to survive the frontend main function. All UI related functions may not be used in parallel. This restriction is forwarded by Nui from emscripten.
 
 The dom.setBody function replaces the document root with your own page. In this case a body element with textContent.
