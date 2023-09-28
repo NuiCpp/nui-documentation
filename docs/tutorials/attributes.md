@@ -53,6 +53,28 @@ const auto ui = div{}(
 You have to make sure that these `Observed<T>` never get destroyed before the associated ui elements do,
 how you do that is up to you (proper lifetimes, static variables, thread_local variables, globally managed state).
 
+## Properties
+
+Some attributes are not reactive and therefore do not infer any change from updates.
+One of these attributes is the checked property of checkbox inputs.
+To mitigate this shortcoming, you can set element properties directly instead of setting an attribute.
+
+```cpp
+Nui::Observed<bool> isChecked{true};
+
+const auto ui = input{
+    type = "checkbox",
+    // for setting the attribute initially:
+    checked = isChecked.value(),
+
+    // This will act like: 'theInput.checked = isChecked', instead of 'isChecked.setAttribute("checked", "")'
+    checked = property(isChecked)
+
+    // Alternatively:
+    // "checked"_prop = isChecked
+}();
+```
+
 ## Events
 
 Some elements can invoke events, like buttons with their onClick event:
@@ -95,6 +117,19 @@ const auto ui = span{
     })
 }();
 ```
+For properties this looks as follows:
+```cpp
+Nui::Observed<int> num{3};
+
+input{
+    checked = observe(num).generateProperty([&num](){
+        return num.value() % 2;
+    })
+
+    // Or: 
+    // "checked"_prop = observe(num).generate(/*...*/)
+}()
+```
 
 ## Custom Attributes
 
@@ -104,15 +139,21 @@ To define an attribute that is non standard, you can do the following:
 <a class="dropdown-toggle" data-bs-toggle="dropdown">
 ```
 ```cpp
-// Define custom attribute:
+// Option 1:
 constexpr auto dataBsToggle = Nui::Attributes::AttributeFactory("data-bs-toggle");
 
 auto foo()
 {
+    // for Option 2:
+    using namespace Nui::Attributes::Literals;
+
     return a{
         class_ = "dropdown-toggle",
         // Can be used here now:
-        dataBsToggle = "dropdown"
+        dataBsToggle = "dropdown",
+
+        // Option 2:
+        "data-bs-toggle"_attr = "dropdown"
     }();
 }
 ```
@@ -158,7 +199,6 @@ const auto ui = div{
 
 ## References
 There is a special reference attribute that allows you to get a handle to the real DOM element:
-
 ```cpp
 using Nui::Elements::span;
 using Nui::Attributes::reference;
