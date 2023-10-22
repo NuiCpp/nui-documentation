@@ -40,6 +40,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'getting_started/installation_linux',
                     label: 'Installation on Linux',
+                },
+                {
+                    type: 'doc',
+                    id: 'getting_started/installation_macos',
+                    label: 'Installation on MacOS',
                 }
             ]
         },
@@ -156,6 +161,11 @@ const sidebars = {
             collapsible: true,
             collapsed: true,
             items: [
+                {
+                    type: 'doc',
+                    id: 'reference/window',
+                    label: 'Window',
+                },
                 {
                     type: 'doc',
                     id: 'reference/val',

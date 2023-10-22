@@ -1,5 +1,6 @@
 # Rendering Ranges
 
+## Observed Ranges
 To render a list of things, you can use the range syntax:
 ```cpp
 #include <fmt/format.h>
@@ -65,5 +66,60 @@ auto foo() {
             }
         }()
     );
+}
+```
+
+## Static Ranges
+Static ranges are ranges that are not reactive. They are only rendered once and never unless the parent element is rerendered.
+There is another exception, passing an observed as a second argument makes the range rerenderable when the observed changes.
+This case is not optimized though, so only use it for small ranges.
+
+```cpp
+#include <fmt/format.h>
+
+struct Person
+{
+    std::string name;
+    int age;
+};
+
+std::vector<Person> people = /*...*/;
+
+auto foo() {
+
+    return div{}(
+        // highlight-start
+        range(people),
+        // highlight-end
+        [](long long index, auto const& currentElement){
+            return span{}(fmt::format("{} is {} years old!", currentElement.name, currentElement.age));
+        }
+    )
+}
+```
+
+### Static Range with Observed
+```cpp
+#include <fmt/format.h>
+
+struct Person
+{
+    std::string name;
+    int age;
+};
+
+std::vector<Person> people = /*...*/;
+Nui::Observed<bool> trigger;
+
+auto foo() {
+    return div{}(
+        // highlight-start
+        // The second argument is an observed, so the range is rerendered when trigger changes.
+        range(people, trigger),
+        // highlight-end
+        [](long long index, auto const& currentElement){
+            return span{}(fmt::format("{} is {} years old!", currentElement.name, currentElement.age));
+        }
+    )
 }
 ```
