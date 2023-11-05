@@ -103,9 +103,9 @@ const auto ui = span{
     class_ = observe(spanClasses, spanSubclass).generate([&spanClasses, &spanSubclass](){
         // use .value to access the underlying wrapped value of a Nui::Observed:
         auto classes = std::accumulate(
-            std::begin(spanClasses.value()), 
-            std::end(spanClasses.value()), 
-            std::string{}, 
+            std::begin(spanClasses.value()),
+            std::end(spanClasses.value()),
+            std::string{},
             [](auto accum, auto const& elem){
                 accum = std::move(accum) + " " + elem;
             }
@@ -126,7 +126,7 @@ input{
         return num.value() % 2;
     })
 
-    // Or: 
+    // Or:
     // "checked"_prop = observe(num).generate(/*...*/)
 }()
 ```
@@ -205,6 +205,10 @@ using Nui::Attributes::reference;
 
 Nui::val mySpan;
 
+// When you want to store the reference, do so by weak_ptr to avoid dangling pointers.
+// The weak_ptr becomes invalid when the element is removed from the DOM.
+std::weak_ptr<Nui::Dom::BasicElement> lifetimeSafe;
+
 const auto ui = span{
     // highlight-start
     reference = mySpan,
@@ -216,8 +220,14 @@ const auto ui2 = span{
     reference = [&mySpan](auto&& weakElement){ mySpan = weakElement.lock()->val(); }
     // highlight-end
 };
-// and finally:
+// or
 const auto ui3 = span{
+    // highlight-start
+    reference = lifetimeSafe
+    // highlight-end
+};
+// and finally:
+const auto ui4 = span{
     // highlight-start
     reference.onMaterialize([&mySpan](Nui::val val){mySpan = val})
     // highlight-end
