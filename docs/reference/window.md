@@ -15,10 +15,13 @@ int main()
     Nui::Window wnd1{};
     std::unique_ptr<Nui::Window> wnd2{};
 
-    wnd.bind("myFunction", [&wnd2](nlohmann::json const&) {
-        wnd2 = std::make_unique<Nui::Window>();
-        wnd2->setSize(800, 600);
-        wnd2->setHtml("<html><body><h1>Hello World!</h1></body></html>");
+    wnd.bind("myFunction", [&wnd2, &wnd1](nlohmann::json const&) {
+        // required on windows to spawn the second window not from within this thread:
+        wnd1.dispatch([](){
+            wnd2 = std::make_unique<Nui::Window>();
+            wnd2->setSize(800, 600);
+            wnd2->setHtml("<html><body><h1>Hello World!</h1></body></html>");
+        });
     });
 
     wnd.run();

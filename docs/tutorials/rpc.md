@@ -36,7 +36,7 @@ All are disabled by default for security reasons.
 
 ### Usage
 
-#### Backend 
+#### Backend
 Registering a function that is callable from the frontend:
 ```cpp
 #include <nui/backend/rpc_hub.hpp>
@@ -56,7 +56,7 @@ int main()
 
     // highlight-start
     hub.registerFunction(
-        "functionName", 
+        "functionName",
         // Parameters can either be be converted from json by nlohmann::json.get<decay_t<T>>...
         [&hub](std::string const& responseId, int param2){
             // ...
@@ -65,7 +65,7 @@ int main()
     );
 
     hub.registerFunction(
-        "functionName", 
+        "functionName",
         // ...or a nlohmann::json and you can dissect it yourself:
         [](nlohmann::json const& args){
             // ...
@@ -118,7 +118,7 @@ void foo()
 
     // Useful RAII unregister (also available in backend):
     {
-        auto unregisterWhenThisFallsOutOfScope = 
+        auto unregisterWhenThisFallsOutOfScope =
             Nui::RpcClient::autoRegisterFunction("asdf", [](){});
     } // asdf no longer exists here.
 
@@ -165,7 +165,7 @@ void foo()
 
 Example:
 ```cpp
-#include <nui/filesystem/file_dialog.hpp>
+#include <nui/frontend/filesystem/file_dialog.hpp>
 
 void foo()
 {
@@ -287,7 +287,7 @@ Nui::ThrottledFunction throttled;
 
 void foo() {
     throttle(
-        200 /*ms*/, 
+        200 /*ms*/,
         [](){
             std::cout << "Not printed faster than 200ms after the last call.";
         },
@@ -319,7 +319,7 @@ Nui::TimerHandle timer;
 void foo()
 {
     Nui::setInterval(
-        500 /*ms*/, 
+        500 /*ms*/,
         // Called every 500ms
         [](){std::cout << "Hello!\n";},
         [&timer](Nui::TimerHandle&& t){
