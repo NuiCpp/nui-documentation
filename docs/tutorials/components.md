@@ -1,6 +1,6 @@
 # Components
 
-"Components" is the idea to group basic elements together in logical reusable ui components. 
+"Components" is the idea to group basic elements together in logical reusable ui components.
 Nui does not have a special syntax for components, but provides them automatically by design.
 
 
@@ -33,7 +33,79 @@ const auto ui = div{}
 );
 ```
 
-## Class Components
+## Class Components - Recommended Practice
+I personally recommend to write class components as function objects and to use the pimpl idiom, where you instantiate all function objects with the Implementation struct and call them in your operator()() function.
+This way, lifetime is never a concern.
+
+component.hpp:
+```cpp
+#pragma once
+
+#include <nui/frontend/element_renderer.hpp>
+#include <nui/frontend/elements.hpp>
+
+class Component
+{
+public:
+    Nui::ElementRenderer operator()() const
+    {
+        return Nui::Elements::div{}();
+    }
+};
+```
+
+other_component.hpp:
+```cpp
+#pragma once
+
+#include <nui/frontend/element_renderer.hpp>
+#include <memory>
+
+class OtherComponent
+{
+public:
+    OtherComponent();
+
+    // Rule of 5, because of the unique_ptr:
+    ~OtherComponent();
+    OtherComponent(OtherComponent const&) = delete;
+    OtherComponent(OtherComponent&&);
+    OtherComponent& operator=(OtherComponent const&) = delete;
+    OtherComponent& operator=(OtherComponent&&);
+
+    Nui::ElementRenderer operator()() const;
+
+private:
+    struct Implementation;
+    std::unique_ptr<Implementation> impl_;
+};
+```
+
+other_component.cpp:
+```cpp
+#include "other_component.hpp"
+
+struct OtherComponent::Implementation
+{
+    // component lives here...:
+    Component component;
+};
+
+OtherComponent::OtherComponent()
+    : impl_{std::make_unique<Implementation>()}
+{}
+OtherComponent::~OtherComponent() = default;
+OtherComponent::OtherComponent(OtherComponent&&) = default;
+OtherComponent& OtherComponent::operator=(OtherComponent&&) = default;
+
+Nui::ElementRenderer OtherComponent::operator()() const
+{
+    // ... and is rendered here:
+    return impl_->component();
+}
+```
+
+## Class Components - Lifetime Detection
 Having stateful classes be components is a little bit trickier, because there are lifetime pitfalls.
 The following demonstrates an issue that you might stumble over:
 ```cpp
@@ -93,7 +165,7 @@ public:
                     const auto self = weak.lock();
                     if (!self)
                         return; // I was destroyed!
-                    
+
                     self->m_divClass = "bla";
                 }
             }
@@ -120,7 +192,3 @@ void frontendMain() {
 ```
 You obviously should manage your component lifetimes correctly though, but sometimes there are valid use cases where a component
 might get destroyed and you have to be able to detect it.
-
-## Final Words
-All in all, component design is entirely up to you. Nui does not enforce any way of writing them or is in any way opinionated.
-Just make sure that you dont run into issues with C++ object lifetimes.

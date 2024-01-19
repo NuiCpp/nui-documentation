@@ -152,6 +152,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'third_party/bootstrap',
                     label: 'Bootstrap',
+                },
+                {
+                    type: 'doc',
+                    id: 'third_party/monaco_editor',
+                    label: 'Monaco Editor',
                 }
             ]
         },
