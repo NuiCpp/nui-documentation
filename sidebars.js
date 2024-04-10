@@ -150,6 +150,16 @@ const sidebars = {
             items: [
                 {
                     type: 'doc',
+                    id: 'third_party/tailwindcss',
+                    label: 'Tailwind CSS',
+                },
+                {
+                    type: 'doc',
+                    id: 'third_party/sapui5',
+                    label: 'UI5 Web Components',
+                },
+                {
+                    type: 'doc',
                     id: 'third_party/bootstrap',
                     label: 'Bootstrap',
                 },
