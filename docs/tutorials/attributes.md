@@ -249,3 +249,19 @@ const auto ui = input{
     value = maybeAString
 };
 ```
+
+## Delayed Attributes
+Sometimes you want to set an attribute after the element is inserted into the DOM.
+This can be done with the exclamation mark:
+```cpp
+using namespace Nui::Elements;
+using namespace Nui::Attributes;
+using Nui::Elements::div;
+
+const auto d = div{
+    !reference = [](Nui::val elem){
+        // elem satisfies isConnected here https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected
+    }
+}();
+```
+
