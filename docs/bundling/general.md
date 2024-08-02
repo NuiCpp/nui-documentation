@@ -206,15 +206,19 @@ int main(int, char** argv)
 }
 ```
 
+:::tip
+On windows, use `app.example` as host name for custom scheme urls, because its excluded from the DNS resolver, avoiding a 2 second delay.
+:::
+
 In the frontend you can then use the custom scheme:
 ```css
 .foo {
-  background: url(nui://any_virtual_host_here/background.png);
+  background: url(nui://app.example/background.png);
 }
 ```
 
 ```javascript
-import EditorWorker from 'url:nui://host/monaco-editor/esm/vs/editor/editor.worker.js';
+import EditorWorker from 'url:nui://app.example/monaco-editor/esm/vs/editor/editor.worker.js';
 ```
 
 ### Virtual Host Name to Folder Mapping
