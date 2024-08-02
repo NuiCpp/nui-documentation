@@ -63,6 +63,16 @@ auto foo() {
                 std::transform(proxy->begin(), proxy->end(), proxy->begin(), [](int elem){
                     return elem * 2;
                 });
+
+                // You can also work directly on the value and call modify later:
+                auto& value = numbers.value();
+                std::transform(value.begin(), value.end(), value.begin(), [](int elem){
+                    return elem * 2;
+                });
+
+                // modifyNow also calls the eventContext executeActiveEventsImmendiately.
+                // This is not necessary from event attributes, because its called at the end anyway.
+                numbers.modifyNow();
             }
         }()
     );
@@ -123,3 +133,15 @@ auto foo() {
     )
 }
 ```
+
+## Notes about the Optimization
+The ranges optimization that is applied to Observed<std::vector> and Observed<std::deque> makes it so that only the changed/inserted elements are rerendered and only erased elements are removed and nothing else is rerendered.
+This is done by tracking the changes using some algorithms on an interval tree.
+
+Insertions, modifications and erasures are only ever tracked alone, so if you switch from inserting elements to modifying elements a rerender is forced.
+If you erase something after modifying, all erased elements that were previously modified will not be rerendered only if the erasure happens at the end.
+If you erase something after inserting, all erased elements that were previously inserted will not be rerendered only if the erasure happens at the end.
+
+All wisdoms about modifying a vector apply to these optimizations. It is optimal to only ever add or erase from the end of the vector.
+The most detrimental thing you can do is inserting at every odd position or erasing at every odd position, this will defeat the optimization and it will
+be much better to just rerender the entire range.
