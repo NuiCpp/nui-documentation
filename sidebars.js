@@ -210,6 +210,11 @@ const sidebars = {
                     type: 'doc',
                     id: 'reference/text',
                     label: 'Plain Text Nodes',
+                },
+                {
+                    type: 'doc',
+                    id: 'reference/standalone_element',
+                    label: 'Standalone Element',
                 }
             ]
         },
