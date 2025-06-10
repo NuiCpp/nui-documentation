@@ -56,8 +56,21 @@ const sidebars = {
             items: [
                 {
                     type: 'doc',
-                    id: 'bundling/general',
+                    id: 'bundling/bundling',
                     label: 'General Information',
+                }
+            ]
+        },
+        {
+            type: 'category',
+            label: 'General Information',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {
+                    type: 'doc',
+                    id: 'general/cmake',
+                    label: 'CMake of Nui',
                 }
             ]
         },
