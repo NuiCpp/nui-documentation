@@ -120,7 +120,7 @@ You can create your own wrapper if it takes a val for construction:
 class MyWrapper : public Nui::ValWrapper
 {
     public:
-        MyWrapper(Nui::val val)
+        explicit MyWrapper(Nui::val val)
             : Nui::ValWrapper{std::move(val)}
         {}
 
