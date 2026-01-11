@@ -85,9 +85,61 @@ const auto ui = button{
     }
 }
 ```
+Using "event" for custom events of some ui libraries:
+```cpp
+const auto ui = button{
+    "change"_event = [](Nui::val event) {
+        // The event parameter has the same content as the javascript equivalent would.
+    }
+}
+```
+
 The event paramter is a [Val](/docs/reference/val) of type [Mouse Event](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent).
 
 Events always process view updates when the function scope is left. So if you change an `Observed<T>` the view will be automatically updated.
+
+### Nui::val wrappers for events
+
+Some events already have wrapper classes that give easier access to the underlying val.
+
+```cpp
+#include <nui/frontend/api/mouse_event.hpp>
+
+const auto ui = button{
+    onClick = [](Nui::WebApi::MouseEvent event){
+        std::cout << "click event clientX: " << event.clientX();
+    }
+}
+```
+
+You can create your own wrapper if it takes a val for construction:
+```cpp
+#include <nui/frontend/val_wrapper.hpp>
+
+// using ValWrapper is entirely optional:
+class MyWrapper : public Nui::ValWrapper
+{
+    public:
+        MyWrapper(Nui::val val)
+            : Nui::ValWrapper{std::move(val)}
+        {}
+
+        std::string myProperty() const
+        {
+            return val_["myProperty"].as<std::string>();
+            // or:
+            // return val()["myProperty"].as<std::string>();
+        }
+};
+
+// Use it later now:
+
+const auto ui = button{
+    onClick = [](MyWrapper event){
+        std::cout << "myProperty: " << event.myProperty();
+    }
+}
+```
 
 ## Observed Value Generator
 
@@ -100,11 +152,11 @@ Nui::Observed<int> spanSubclass = 0;
 
 const auto ui = span{
     // Observe changes on the passed Nui::Observed<T> and generate a class from that
-    class_ = observe(spanClasses, spanSubclass).generate([&spanClasses, &spanSubclass](){
+    class_ = observe(spanClasses, spanSubclass).generate([](std::vector<std::string> const& spanClasses, int spanSubclass){
         // use .value to access the underlying wrapped value of a Nui::Observed:
         auto classes = std::accumulate(
-            std::begin(spanClasses.value()),
-            std::end(spanClasses.value()),
+            std::begin(spanClasses),
+            std::end(spanClasses),
             std::string{},
             [](auto accum, auto const& elem){
                 accum = std::move(accum) + " " + elem;
@@ -112,22 +164,30 @@ const auto ui = span{
         );
         if (!accum.empty())
             accum.erase(accum.begin());
-        accum += " spanSubclass" + std::to_string(spanSubclass.value());
+        accum += " spanSubclass" + std::to_string(spanSubclass);
         return accum;
     })
 }();
 ```
+The passed function to "generate" may also take no arguments.
+
+Sometimes you dont want to set attributes on an element, but object properties.
+This is used by some ui frameworks for their parameters, like ui5 webcomponents:
 For properties this looks as follows:
 ```cpp
 Nui::Observed<int> num{3};
+// for prop:
+using namespace Nui::Attributes::Literals;
 
 input{
-    checked = observe(num).generateProperty([&num](){
-        return num.value() % 2;
+    "checked"_prop = observe(num).generate([](int num){
+        return num % 2;
     })
 
     // Or:
-    // "checked"_prop = observe(num).generate(/*...*/)
+    // checked = observe(num).generateProperty([](int num){
+    //     return num % 2;
+    // })
 }()
 ```
 

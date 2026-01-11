@@ -25,7 +25,7 @@ Nui::ElementRenderer func()
 }
 ```
 
-:::caution
+:::warning
 
 Requires 'nui/make_resizeable' to be imported somewhere in your javascript/typescript files.
 

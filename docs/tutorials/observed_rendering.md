@@ -14,6 +14,21 @@ const auto ui = div{}(
     observe(str, number),
     // This function is recalled and regenerates its respective elements,
     // when 'str' or 'number' changes.
+    [](std::string const& str, int number) -> Nui::ElementRenderer {
+        const auto result = str + std::to_string(number);
+        return span{}(result);
+    }
+)
+```
+Alternatively (generate function takes no arguments):
+```cpp
+Nui::Observed<std::string> str{"test"};
+Nui::Observed<int> number{0};
+
+const auto ui = div{}(
+    observe(str, number),
+    // This function is recalled and regenerates its respective elements,
+    // when 'str' or 'number' changes.
     [&str, &number]() -> Nui::ElementRenderer {
         const auto result = *str + std::to_string(*number);
         return span{}(result);

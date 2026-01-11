@@ -147,7 +147,7 @@ int main()
 }
 ```
 
-### Window::bind(std::string const& name, std::function<void(nlohmann::json const&)> const& callback)
+### `Window::bind(std::string const& name, std::function<void(nlohmann::json const&)> const& callback)`
 Bind a function into the web context. These will be available under globalThis.nui_rpc.backend.NAME
 Prefer to use the RpcHub instead.
 
@@ -164,7 +164,7 @@ int main()
 }
 ```
 
-### Window::unbind(std::string const& name)
+### `Window::unbind(std::string const& name)`
 Unbinds a function from the web context.
 
 ```cpp
@@ -179,7 +179,7 @@ int main()
 }
 ```
 
-### Window::getExecutor()
+### `Window::getExecutor()`
 Returns the executor of the window.
 
 ```cpp
@@ -198,7 +198,7 @@ int main()
 }
 ```
 
-### Window::run()
+### `Window::run()`
 Runs / Shows the window.
 
 ```cpp
@@ -212,7 +212,7 @@ int main()
 }
 ```
 
-### Window::setHtml(std::string_view html, bool fromFilesystem = false)
+### `Window::setHtml(std::string_view html, bool fromFilesystem = false)`
 Sets the html of the window.
 When "fromFilesystem" is true, the file is dumped to a temporary file and loaded from there.
 
@@ -227,7 +227,7 @@ int main()
 }
 ```
 
-### Window::eval(std::string const& code)
+### `Window::eval(std::string const& code)`
 Evaluates the given code in the web context.
 
 ```cpp
@@ -243,7 +243,7 @@ int main()
 }
 ```
 
-### Window::eval(std::filesystem::path const& file)
+### `Window::eval(std::filesystem::path const& file)`
 Evaluates the given file in the web context.
 
 ```cpp
@@ -259,23 +259,23 @@ int main()
 }
 ```
 
-### Window::init(std::string const& code)
+### `Window::init(std::string const& code)`
 Places javascript in the window.
 
-### Window::init(std::filesystem::path const& file)
+### `Window::init(std::filesystem::path const& file)`
 Places javascript in the window from a file.
 
-### void* Window::getNativeWindow()
+### `void* Window::getNativeWindow()`
 Returns a pointer to the native window.
 `HWND` on windows.
 `GtkWindow*` on linux.
 `id` on macos.
 
-### void* Window::getNativeWebView()
+### `void* Window::getNativeWebView()`
 Returns a pointer to the native webview.
 cast to `ICoreWebView2*` on windows.
 cast using `WEBKIT_WEB_VIEW(getNativeWebView())` on linux.
 And its an `id` on macos.
 
-### Window::setConsoleOutput(bool enabled)
+### `Window::setConsoleOutput(bool enabled)`
 Enables or disables console output from the webview on linux systems.

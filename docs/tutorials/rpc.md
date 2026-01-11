@@ -1,4 +1,4 @@
-# Frontend <-> Backend Communication
+# Frontend \<\-\> Backend Communication
 
 Nui provides a way to communicate between frontend and the main process running the WebView.
 This intentionally does not use async in the frontend, because using Asyncify comes with a considerable

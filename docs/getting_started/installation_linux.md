@@ -15,7 +15,8 @@
   - boost
   - libcurl
 
-<details><summary>Ubuntu 22.04</summary>
+<details>
+<summary>Ubuntu 22.04</summary>
 <p>
 
 Packages:
@@ -66,7 +67,8 @@ nvm install node
 </p>
 </details>
 
-<details><summary>Arch Linux</summary>
+<details>
+<summary>Arch Linux</summary>
 <p>
 
 Packages:

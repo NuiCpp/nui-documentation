@@ -21,4 +21,4 @@ label{}(
     // highlight-end
 )
 ```
-Text content can also be dynamic using Nui::Observed<std::string>.
+Text content can also be dynamic using `Nui::Observed<std::string>`.

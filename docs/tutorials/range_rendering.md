@@ -135,7 +135,7 @@ auto foo() {
 ```
 
 ## Notes about the Optimization
-The ranges optimization that is applied to Observed<std::vector> and Observed<std::deque> makes it so that only the changed/inserted elements are rerendered and only erased elements are removed and nothing else is rerendered.
+The ranges optimization that is applied to `Nui::Observed<std::vector>` and `Nui::Observed<std::deque>` makes it so that only the changed/inserted elements are rerendered and only erased elements are removed and nothing else is rerendered.
 This is done by tracking the changes using some algorithms on an interval tree.
 
 Insertions, modifications and erasures are only ever tracked alone, so if you switch from inserting elements to modifying elements a rerender is forced.

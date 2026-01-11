@@ -22,7 +22,7 @@ Make sure that the python executeable is in PATH
 ### Install nodejs and npm
 
 Using nvm is the most practical way to install node and npm https://github.com/coreybutler/nvm-windows/releases.
-:::caution
+:::warning
 
 If you already have node installed, uninstall it first before using nvm.
 
@@ -35,7 +35,7 @@ If you already have node installed, uninstall it first before using nvm.
 Make sure that you have installed the following components for Visual Studio 2022 using the official Visual Studio Installer:
 - vcpkg package manager
 - C++ CMake tools for Windows
-- C++ Clang tools for Windows (<- not automatically included in the Desktop development with C++ Workload setting)
+- C++ Clang tools for Windows (\<\- not automatically included in the Desktop development with C++ Workload setting)
 - git for Windows, or install it via official downloads: https://gitforwindows.org/
 
 Nui only supports clang and requires clang for WASM compilation.
@@ -152,7 +152,7 @@ You can also use the `-G"MSYS Makefiles"` generator, but this is strongly discou
 
 :::info
 
-Make sure you have installed `mingw-w64-clang-x86_64-ninja` not simply `ninja` and are operating from a 
+Make sure you have installed `mingw-w64-clang-x86_64-ninja` not simply `ninja` and are operating from a
 msys2 clang64 environment terminal.
 
 :::
@@ -357,7 +357,7 @@ Within CLion:
 
 ### Error: could not find git for clone of nui in FetchContent
 
-CMake cannot find git in your PATH environment. 
+CMake cannot find git in your PATH environment.
 For Visual Studio install git either using the Visual Studio Installer, or manually via the offical website.
 In the msys2 case, install git via the commandline.
 
@@ -365,7 +365,7 @@ In the msys2 case, install git via the commandline.
 
 If you are using Visual Studio, you did not setup vcpkg correctly. Retrace the steps outlined above ([Install vcpkg](#install-visual-studio-packages)), alternatively install vcpkg manually: https://vcpkg.io/en/getting-started.html
 
-If you are using msys2, [install the correct packages](#install-msys2-if-you-dont-have-it-installed) for the clang64 subsystem. 
+If you are using msys2, [install the correct packages](#install-msys2-if-you-dont-have-it-installed) for the clang64 subsystem.
 
 ### Other
 
